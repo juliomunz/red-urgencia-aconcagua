@@ -22,15 +22,21 @@ El sistema utiliza una arquitectura **desacoplada (Cliente-Servidor)** mediante 
    git clone [https://github.com/juliomunz/red-urgencia-aconcagua.git](https://github.com/juliomunz/red-urgencia-aconcagua.git)
 
 2. **Ejecutar el Frontend:**
-    cd red_urgencia
+```bash
+cd red_urgencia
+```
     flutter pub get
-    flutter run
+```
+flutter run
+```
 
-3. **Endpoints de Prueba (Modo Simulación):**
-    Consultar API: /api/v1/red-urgencia
-    Forzar Colapso: /admin/colapsar
-    Liberar Red: /admin/liberar
+4. **Endpoints de Prueba (Modo Simulación):**
+- Consultar API: /api/v1/red-urgencia
+- Forzar Colapso: /admin/colapsar
+- Liberar Red: /admin/liberar
 
 **Desarrollado por:**
-    Julio Muñoz Cortés
-    Ingeniero en Informática, Instituto IACC.
+
+Julio Muñoz Cortés
+
+Ingeniero en Informática, Instituto IACC.
