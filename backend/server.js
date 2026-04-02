@@ -1,14 +1,9 @@
-// server.js - Con Motor de Simulación RCE
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-
-// ==========================================
-// 🏥 MOTOR DE SIMULACIÓN (RCE MOCK)
-// ==========================================
 
 // Estado inicial del Hospital (Base de datos en memoria)
 let hospitalState = {
@@ -18,11 +13,9 @@ let hospitalState = {
     tendencia: 'ESTABLE'
 };
 
-// FUNCIÓN: El "Latido" del Hospital
-// Esto simula que cada 10 segundos entra o sale gente aleatoriamente
+// Simula que cada 10 segundos entra o sale gente aleatoriamente
 setInterval(() => {
     // Generamos un número aleatorio entre -2 y +3
-    // (Hay más probabilidad de que llegue gente a que se vaya)
     const flujo = Math.floor(Math.random() * 6) - 2; 
     
     // Actualizamos la cantidad de pacientes
@@ -40,14 +33,9 @@ setInterval(() => {
 
 }, 10000); // Se ejecuta cada 10,000 ms (10 segundos)
 
-
-// ==========================================
-// 🧮 LÓGICA DE NEGOCIO (Tu Tesis)
-// ==========================================
-
 function calcularTiempoEspera(cantidadPacientes) {
     // Fórmula simple: 10 minutos por paciente de baja complejidad acumulado
-    // + un factor base de 20 minutos por triaje/administrativo
+    // Más factor base de 20 minutos por triaje/administrativo
     return 20 + (cantidadPacientes * 10);
 }
 
@@ -72,14 +60,9 @@ function obtenerEstado(tipo) {
 
         return { tiempo, estado, color, recomendacion };
     } else {
-        // El SAPU lo dejamos estático "ideal" para la comparación
         return { tiempo: 25, estado: 'DISPONIBLE', color: 0xFF388E3C, recomendacion: "Opción recomendada para baja complejidad." };
     }
 }
-
-// ==========================================
-// 🌐 API REST PÚBLICA
-// ==========================================
 
 app.get('/api/v1/red-urgencia', (req, res) => {
     const hospital = obtenerEstado('HOSPITAL');
@@ -87,7 +70,7 @@ app.get('/api/v1/red-urgencia', (req, res) => {
 
     res.json({
         mensaje: "Estado de la Red de Urgencia Aconcagua (Tiempo Real)",
-        pacientes_en_fila_simulados: hospitalState.pacientes_espera_baja_complejidad, // Dato transparente para ti
+        pacientes_en_fila_simulados: hospitalState.pacientes_espera_baja_complejidad,
         centros: [
             {
                 nombre: "Hospital San Camilo (San Felipe)",
@@ -117,11 +100,6 @@ app.get('/api/v1/red-urgencia', (req, res) => {
         timestamp: new Date().toISOString()
     });
 });
-
-// ==========================================
-// 🕹️ ENDPOINTS "MODO DIOS" (Para tu Demo)
-// ==========================================
-// Úsalos en el navegador para forzar situaciones
 
 // Forzar COLAPSO: https://tu-api.onrender.com/admin/colapsar
 app.get('/admin/colapsar', (req, res) => {
