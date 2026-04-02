@@ -1,9 +1,7 @@
-// backend/simulador.test.js
 // Prueba Unitaria: Verifica la lógica matemática del Triage ESI
 
-// Mock de la función para pruebas (sin aleatoriedad para ser determinista)
+// Mock de la función para pruebas
 function simularTiempoEspera(categoria) {
-    // Valores base validados por experto del Servicio de Salud Aconcagua
     const baseEspera = { 
         'C1': 0,    // ESI 1: Vital
         'C2': 10,   // ESI 2: Emergencia

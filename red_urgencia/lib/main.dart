@@ -31,7 +31,6 @@ class PantallaEstadoRed extends StatefulWidget {
 }
 
 class _PantallaEstadoRedState extends State<PantallaEstadoRed> {
-  // TU URL REAL EN RENDER
   final String apiUrl = "https://red-urgencia-aconcagua.onrender.com/api/v1/red-urgencia";
   
   // Variable para guardar los datos que lleguen
@@ -45,7 +44,7 @@ class _PantallaEstadoRedState extends State<PantallaEstadoRed> {
     fetchEstadoRed(); // Cargar datos al iniciar
   }
 
-  // Función para pedir datos a la Nube
+  // Función para pedir datos
   Future<void> fetchEstadoRed() async {
     setState(() {
       isLoading = true;
@@ -81,7 +80,7 @@ class _PantallaEstadoRedState extends State<PantallaEstadoRed> {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh, color: Colors.white),
-            onPressed: fetchEstadoRed, // Botón para recargar datos
+            onPressed: fetchEstadoRed,
           )
         ],
       ),
@@ -102,7 +101,6 @@ class _PantallaEstadoRedState extends State<PantallaEstadoRed> {
                     itemCount: centros.length,
                     itemBuilder: (context, index) {
                       final centro = centros[index];
-                      // Convertimos el color HEX del JSON a Color de Flutter
                       final colorEstado = Color(centro['color_hex']);
 
                       return Card(
