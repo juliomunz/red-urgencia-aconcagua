@@ -81,7 +81,7 @@ app.get('/api/v1/red-urgencia', (req, res) => {
                 recomendacion: hospital.recomendacion
             },
             {
-                nombre: "SAPU Segismundo Iturra",
+                nombre: "SAPU Dr. Segismundo Iturra",
                 tipo: "Atención Primaria",
                 tiempo_espera: sapu.tiempo,
                 estado: sapu.estado,
